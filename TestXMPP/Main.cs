@@ -1,11 +1,9 @@
 using System;
 using System.Windows.Forms;
-using log4net.Appender.RichTextBoxAppender;
 using ubiety;
 using ubiety.common;
 using ubiety.registries;
 using System.Reflection;
-using log4net.Config;
 
 namespace TestXMPP
 {
@@ -18,7 +16,6 @@ namespace TestXMPP
 			InitializeComponent();
 			CompressionRegistry.Instance.AddCompression(Assembly.LoadFile(Application.StartupPath + @"\ubiety.compression.sharpziplib.dll"));
 			Errors.Instance.OnError += Errors_OnError;
-			XmlConfigurator.Configure();
 			slVersion.Text = "Ubiety Version: " + XMPP.Version;
 		}
 
@@ -46,7 +43,7 @@ namespace TestXMPP
 
 		private void MainLoad(object sender, EventArgs e)
 		{
-			RichTextBoxAppender.SetRichTextBox(rtbDebug, "RichTextAppender");
+			//RichTextBoxAppender.SetRichTextBox(rtbDebug, "RichTextAppender");
 		}
 	}
 }
