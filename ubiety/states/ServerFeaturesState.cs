@@ -20,6 +20,7 @@ using ubiety.common;
 using ubiety.common.SASL;
 using ubiety.core;
 using ubiety.registries;
+using ubiety.logging;
 
 namespace ubiety.states
 {

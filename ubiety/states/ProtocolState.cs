@@ -28,22 +28,18 @@ namespace ubiety.states
 	internal class ProtocolState
 	{
 		public static readonly ProtocolState Instance = new ProtocolState();
-		private readonly XmlDocument _doc = new XmlDocument();
-		private State _state;
 
 		private ProtocolState()
 		{
-			_state = new ClosedState();
+			Document = new XmlDocument();
+			State = new ClosedState();
+			Socket = new AsyncSocket();
 		}
 
 		/// <value>
 		/// The current state we are in.
 		/// </value>
-		public State State
-		{
-			get { return _state; }
-			set { _state = value; }
-		}
+		public State State { get; set; }
 
 		/// <value>
 		/// The socket used for connecting to the server.
@@ -67,10 +63,7 @@ namespace ubiety.states
 
 		public string Algorithm { get; set; }
 
-		public XmlDocument Document
-		{
-			get { return _doc; }
-		}
+		public XmlDocument Document { get; private set; }
 
 		/// <summary>
 		/// Executes the current state.
@@ -80,7 +73,7 @@ namespace ubiety.states
 		/// </param>
 		public void Execute(Tag data = null)
 		{
-			_state.Execute(data);
+			State.Execute(data);
 		}
 	}
 }

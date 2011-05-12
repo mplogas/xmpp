@@ -20,7 +20,6 @@
 using System;
 using System.Reflection;
 using ubiety.common;
-using ubiety.net;
 using ubiety.registries;
 using ubiety.states;
 
@@ -50,7 +49,7 @@ namespace ubiety
 	///		public static Main()
 	///		{
 	///			// Create a new ID for authentication
-	///			Settings.ID = new XID("user@jabber.org/chat");
+	///			Settings.ID = new JID("user@jabber.org/chat");
 	///			Settings.Password = "password";
 	/// 
 	///			// Create a new instance of the XMPP class
@@ -66,6 +65,7 @@ namespace ubiety
 		private static readonly Errors Errors = Errors.Instance;
 		private static readonly ProtocolState States = ProtocolState.Instance;
 		///<summary>
+		/// Current library version
 		///</summary>
 		public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 		private readonly TagRegistry _reg = TagRegistry.Instance;
@@ -77,7 +77,6 @@ namespace ubiety
 		{
 			_reg.AddAssembly(Assembly.GetExecutingAssembly());
 			Errors.OnError += OnError;
-			States.Socket = new AsyncSocket();
 		}
 
 		/// <summary>
@@ -98,8 +97,6 @@ namespace ubiety
 				Errors.SendError(typeof (XMPP), ErrorType.MissingId, "Set the ID property of the Settings before connecting.", true);
 				return;
 			}
-
-			//Logger.InfoFormat(typeof (XMPP), "Connecting to {0}", States.Socket.Hostname);
 
 			// Set the current state to connecting and start the process.
 			States.State = new ConnectingState();
