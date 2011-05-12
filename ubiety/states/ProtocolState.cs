@@ -33,7 +33,6 @@ namespace ubiety.states
 		{
 			Document = new XmlDocument();
 			State = new ClosedState();
-			Socket = new AsyncSocket();
 		}
 
 		/// <value>

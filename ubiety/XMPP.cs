@@ -21,6 +21,7 @@ using System;
 using System.Reflection;
 using ubiety.common;
 using ubiety.logging;
+using ubiety.net;
 using ubiety.registries;
 using ubiety.states;
 
@@ -78,6 +79,7 @@ namespace ubiety
 		{
 			_reg.AddAssembly(Assembly.GetExecutingAssembly());
 			Errors.OnError += OnError;
+			States.Socket = new AsyncSocket();
 		}
 
 		/// <summary>
