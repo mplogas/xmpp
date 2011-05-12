@@ -103,7 +103,7 @@ namespace ubiety.registries
 			{
 				Logger.ErrorFormat(this, "Unable to find tag {0} in registry.  Check to make sure library is loaded into registry.",
 				                   qname);
-				Logger.Error(this, e);
+				Logger.Error(this, e.Message);
 			}
 			return tag;
 		}
