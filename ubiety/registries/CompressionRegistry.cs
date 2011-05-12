@@ -20,6 +20,7 @@ using ubiety.attributes;
 using System.IO;
 using System.Reflection;
 using ubiety.common;
+using ubiety.logging;
 
 namespace ubiety.registries
 {
@@ -39,14 +40,14 @@ namespace ubiety.registries
 		/// </param>
 		public void AddCompression(Assembly a)
 		{
-            Logger.DebugFormat(this, "Adding assembly {0}", a.FullName);
-            
-            var tags = GetAttributes<CompressionAttribute>(a);
-            foreach (var tag in tags)
-            {
-            	Logger.DebugFormat(this, "Adding {0}", tag.Algorithm);
-            	RegisteredItems.Add(tag.Algorithm, tag.ClassType);
-            }			
+			Logger.DebugFormat(this, "Adding assembly {0}", a.FullName);
+			
+			var tags = GetAttributes<CompressionAttribute>(a);
+			foreach (var tag in tags)
+			{
+				Logger.DebugFormat(this, "Adding {0}", tag.Algorithm);
+				RegisteredItems.Add(tag.Algorithm, tag.ClassType);
+			}			
 		}
 
 		/// <summary>
