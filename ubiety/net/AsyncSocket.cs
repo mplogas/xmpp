@@ -16,6 +16,7 @@
 //Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -95,7 +96,7 @@ namespace ubiety.net
 				return;
 			}
 
-			Logger.InfoFormat(this, "Trying to connect to: {2}({0}:{1})", end.Address, UbietySettings.Port.ToString(),
+			Logger.InfoFormat(this, "Trying to connect to: {2}({0}:{1})", end.Address, UbietySettings.Port.ToString(CultureInfo.InvariantCulture),
 				                  UbietySettings.Hostname);
 
 			if (!_dest.IPv6)
