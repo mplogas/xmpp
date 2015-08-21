@@ -1,8 +1,25 @@
-build_script:
-  - build NugetPackage
-
+version: 0.7.{build}
+os: Visual Studio 2015
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+install:
+- set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+nuget:
+  project_feed: true
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
 test: off
-
-artifacts:
-  - path: Build\NuGet\*.nupkg
-    name: NugetPackages
+deploy:
+- provider: NuGet
+  api_key:
+    secure: SVh7GCYVf1lMSOmHE9DuG5eAJoVdPcLGeN8sH6VX9np4pmO9iJJLgkbndf83zOCY
+- provider: GitHub
+  auth_token:
+    secure: YCGQCjqJ9LNaCT/yyvzAnsAagxH3E3w7hX8Z7NaTM2eS6uo2e+rJllLaC4bw3deu
+  prerelease: true
